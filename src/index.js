@@ -1,17 +1,30 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import Number from "./components/Number/Number";
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+class Lifecycledemo extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            data: 0
+        }
+        this.setNewValue = this.setNewValue.bind(this)
+    }
+    setNewValue() {
+        this.setState({data: this.state.data + 10})
+    }
+    render() {
+        return (
+            <div>
+                <h1>This is heading</h1>
+                <Number Number = {this.state.data}></Number>
+                <button onClick = {this.setNewValue}>Increase Number </button>
+
+            </div>
+        )
+    }
+}
+
+ReactDOM.render(<Lifecycledemo/>, document.getElementById('root'))
+
